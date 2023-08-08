@@ -1,0 +1,119 @@
+```{r}
+library(ggplot2)
+library(sp)
+library(rasterVis)
+library(raster)
+```
+
+
+```{r}
+# Assuming 'p' is your raster layer
+plot <- gplot(p) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_gradient(low = 'white', high = 'purple', name = 'Habitat suitability',
+                      limits = c(0, 1), breaks = seq(0, 1, by = 0.1),
+                      na.value = "white",
+                      guide = guide_legend(label.theme = element_text(size = 10))) +  # Set size for legend labels
+  coord_equal() +
+  theme(panel.background = element_rect(fill = "white"),
+        axis.title = element_blank(),
+        legend.position = "none")  # Hide the default legend
+
+# Overlay the ggplot with shapefile polygons using geom_polygon
+final_plot <- plot +
+  geom_polygon(data = shape, aes(x = long, y = lat, group = group), color = "black", fill = NA) + 
+  theme(legend.position = c(0.18, 0.95),  # Adjust these coordinates as needed
+        legend.justification = c(0, 1),
+        legend.key.size = unit(0.55, "cm"),
+        legend.title = element_text(size = 11))  # Adjust the legend key size
+
+# Display the final plot
+print(final_plot)
+
+```
+
+```{r}
+# Assuming 'p' is your raster layer
+plot <- gplot(pfut) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_gradient(low = 'white', high = 'purple', name = 'Habitat suitability',
+                      limits = c(0, 1), breaks = seq(0, 1, by = 0.1),
+                      na.value = "white",
+                      guide = guide_legend(label.theme = element_text(size = 10))) +  # Set size for legend labels
+  coord_equal() +
+  theme(panel.background = element_rect(fill = "white"),
+        axis.title = element_blank(),
+        legend.position = "none")  # Hide the default legend
+
+# Overlay the ggplot with shapefile polygons using geom_polygon
+final_plot_pfut <- plot +
+  geom_polygon(data = shape, aes(x = long, y = lat, group = group), color = "black", fill = NA) + 
+  theme(legend.position = c(0.18, 0.95),  # Adjust these coordinates as needed
+        legend.justification = c(0, 1),
+        legend.key.size = unit(0.55, "cm"),
+        legend.title = element_text(size = 11))  # Adjust the legend key size
+
+# Display the final plot
+print(final_plot_pfut)
+
+```
+```{r}
+Bio_5_SSP126 <- futclimatefocus$wc2.1_2.5m_bio_5
+```
+
+
+
+```{r}
+# Assuming 'p' is your raster layer
+Bio_5 <- gplot(Bio_5_SSP126) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_gradient(low = 'white', high = 'red',
+                      na.value = "white",
+                      breaks = seq(16, 36, by = 2),  # Set custom breaks
+                      guide = guide_legend(label.theme = element_text(size = 10))) +  # Set size for legend labels
+  coord_equal() +
+  theme(panel.background = element_rect(fill = "white"),
+        axis.title = element_blank(),
+        legend.position = "none")  # Hide the default legend
+
+# Overlay the ggplot with shapefile polygons using geom_polygon
+final_plot_pfut <- Bio_5 +
+  geom_polygon(data = shape, aes(x = long, y = lat, group = group), color = "black", fill = NA) +
+  theme(legend.position = c(0.18, 0.95),  # Adjust these coordinates as needed
+        legend.justification = c(0, 1),
+        legend.key.size = unit(0.55, "cm"),
+        legend.title = element_text(size = 11)) +  # Adjust the legend key size
+  labs(fill = "Bio 5 Values")  # Add a label to the legend
+
+# Display the final plot
+print(final_plot_pfut)
+
+
+```
+
+```{r}
+# Assuming 'p' is your raster layer
+Bio_5 <- gplot(Bio_5_SSP126) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_gradient(low = 'white', high = 'purple',
+                      na.value = "white",
+                      breaks = seq(16, 36, by = 2),  # Set custom breaks
+                      guide = guide_legend(label.theme = element_text(size = 10))) +  # Set size for legend labels
+  coord_equal() +
+  theme(panel.background = element_rect(fill = "white"),
+        axis.title = element_blank(),
+        legend.position = "none")  # Hide the default legend
+
+# Overlay the ggplot with shapefile polygons using geom_polygon
+final_plot_pfut <- Bio_5 +
+  geom_polygon(data = shape, aes(x = long, y = lat, group = group), color = "black", fill = NA) +
+  theme(legend.position = c(0.18, 0.95),  # Adjust these coordinates as needed
+        legend.justification = c(0, 1),
+        legend.key.size = unit(0.55, "cm"),
+        legend.title = element_text(size = 11)) +  # Adjust the legend key size
+  labs(fill = "Bio 5 Values")  # Add a label to the legend
+
+# Display the final plot
+print(final_plot_pfut)
+
+```
